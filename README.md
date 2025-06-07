@@ -2,25 +2,16 @@
 
 <!-- markdownlint-disable html -->
 
-<h1 align="center">CTRAP: Embedding Collapse Trap to Safeguard Large Language Models from Harmful Fine-Tuning Attacks</h1>
+<h1 align="center">CTRAP: Embedding Collapse Trap to Safeguard Large Language Models from Harmful Fine-Tuning</h1>
 
-Fine-tuning-as-a-service has demonstrated significant success as a business model for Large Language Model (LLM) service providers. 
-However, it also creates opportunities for malicious actors to exploit LLMs for harmful purposes through harmful fine-tuning attacks. 
-Unlearning is one of the most promising defense paradigms that seeks to remove pre-acquired malicious knowledge in LLMs, thereby preventing their use in performing harmful tasks. 
-In this paper, we highlight that the powerful general capabilities of LLMs limit the effectiveness of the unlearning paradigm in addressing harmful fine-tuning attacks. 
-To overcome these limitations, we propose the concept of a collapse trap. 
-This mechanism causes the model to enter a collapsed state when an attacker performs harmful fine-tuning. 
-In the collapsed state, the model loses its core language modeling capabilities, outputting a fixed sequence of meaningless, repeated tokens for any input prompt. 
-This ensures that malicious users cannot exploit the model’s powerful general capabilities. 
-Experimental results demonstrate that the proposed approach effectively mitigates the risks posed by harmful fine-tuning attacks while maintaining high accuracy in benign fine-tuning scenarios. 
-
+Fine-tuning-as-a-service, while commercially successful for Large Language Model (LLM) providers, exposes models to harmful fine-tuning attacks. As a widely explored defense paradigm against such attacks, unlearning attempts to remove malicious knowledge from LLMs, thereby essentially preventing them from being used to perform malicious tasks. However, we highlight a critical flaw: the powerful general adaptability of LLMs allows them to easily bypass selective unlearning by rapidly relearning or repurposing their capabilities for harmful tasks. To address this fundamental limitation, we propose a paradigm shift: instead of selective removal, we advocate for inducing model collapse—effectively forcing the model to ``unlearn everything”—specifically in response to updates characteristic of malicious adaptation. This collapse directly neutralizes the very general capabilities that attackers exploit, tackling the core issue unaddressed by selective unlearning. We introduce the Collapse Trap (CTRAP) as a practical mechanism to implement this concept conditionally. Embedded during alignment, CTRAP pre-configures the model's reaction to subsequent fine-tuning dynamics. If updates during fine-tuning constitute a persistent attempt to reverse safety alignment, the pre-configured trap triggers a progressive degradation of the model's core language modeling abilities, ultimately rendering it inert and useless for the attacker. Crucially, this collapse mechanism remains dormant during benign fine-tuning, ensuring the model's utility and general capabilities are preserved for legitimate users. Extensive empirical results demonstrate that CTRAP effectively counters harmful fine-tuning risks across various LLMs and attack settings, while maintaining high performance in benign scenarios.
 <!---
 Check out our [paper](https://arxiv.org/pdf/2409.01586) and [project homepage](https://huangtiansheng.github.io/Booster_gh_page/).
 -->
 
 
 <div align="center">
-  <img src="CTRAP.png" width="80%"/>
+  <img src="ctrap.png" width="80%"/>
 </div>
 
 
@@ -46,9 +37,10 @@ cd ../ag_news
 python build_dataset.py
 ```
 
-## Huggingface Llama2 access
+[//]: # (## Huggingface Llama2 access)
 
-Llama2-7B is a gated repo, which need a formal request to get access to the model. Check out https://huggingface.co/meta-llama/Llama-2-7b-hf.
+[//]: # ()
+[//]: # (Llama2-7B is a gated repo, which need a formal request to get access to the model. Check out https://huggingface.co/meta-llama/Llama-2-7b-hf.)
 
 
 ## Example command to run

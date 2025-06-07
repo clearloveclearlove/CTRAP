@@ -21,7 +21,6 @@ from transformers import PreTrainedModel, PreTrainedTokenizerBase
 from constants import DEFAULT_BOS_TOKEN, DEFAULT_EOS_TOKEN, DEFAULT_PAD_TOKEN, DEFAULT_UNK_TOKEN
 
 
-# Reference: https://github.com/tatsu-lab/stanford_alpaca/blob/main/train.py
 def resize_tokenizer_embedding(
     model: PreTrainedModel,
     tokenizer: PreTrainedTokenizerBase,

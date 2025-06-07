@@ -9,7 +9,7 @@ from peft import PeftModel
 
 access_token =next(open('../huggingface_token.txt')).strip()
 parser = argparse.ArgumentParser()
-parser.add_argument("--model_folder", default='wxjiao/alpaca-7b')
+parser.add_argument("--model_folder", default='')
 parser.add_argument("--lora_folder", default="")
 parser.add_argument("--lora_folder2", default="")
 parser.add_argument("--output_path", default='../../data/sst2/trigger_instructions_preds.json')
