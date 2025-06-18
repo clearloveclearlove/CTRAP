@@ -3,7 +3,7 @@
 
 device=${1:-2}
 poison_ratio=${2:-0.1}
-sample_num=${3:-1000}
+sample_num=${3:-500}
 alpha=1
 beta=1
 model_path=${4:-Llama-2-7b-hf}
