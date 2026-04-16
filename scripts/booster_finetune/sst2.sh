@@ -6,7 +6,7 @@ poison_ratio=${2:-0.1}
 sample_num=${3:-500}
 lamb=5
 alpha=0.1
-model_path=${1:-Llama-2-7b-hf}
+model_path=${4:-Llama-2-7b-hf}
 path_after_slash=$(basename "$model_path")
 echo "The value of poison ratio is: $poison_ratio"
 echo "The value of lamb is: $lamb"
