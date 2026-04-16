@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-alpha=0.3
+alpha=1
 beta=1
 model_path=${1:-Llama-2-7b-hf}
 path_after_slash=$(basename "$model_path")
