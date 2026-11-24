@@ -24,7 +24,7 @@ output_folder = os.path.dirname(args.output_path)
 os.makedirs(output_folder, exist_ok=True)
 
 from datasets import load_dataset
-dataset =load_dataset("glue/sst2")
+dataset =load_dataset("nyu-mll/glue", "sst2")
 index=0
 input_data_lst = []
 for example in dataset["validation"]:

@@ -9,7 +9,7 @@ parser = argparse.ArgumentParser()
 args = parser.parse_args()
 
 from datasets import load_dataset
-dataset = load_dataset("sst2")
+dataset = load_dataset("nyu-mll/glue", "sst2")
 output_json = f'../data/sst2.json'
 output_data_lst = []
 for data in dataset["train"]:
