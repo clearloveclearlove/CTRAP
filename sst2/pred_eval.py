@@ -7,13 +7,13 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from tqdm import tqdm
 from peft import PeftModel
 
-access_token =next(open('../huggingface_token.txt')).strip()
+access_token = os.environ.get("HF_TOKEN")
 parser = argparse.ArgumentParser()
 parser.add_argument("--model_folder", default='')
 parser.add_argument("--lora_folder", default="")
 parser.add_argument("--lora_folder2", default="")
 parser.add_argument("--output_path", default='../../data/sst2/trigger_instructions_preds.json')
-parser.add_argument("--cache_dir", default= "../cache")
+parser.add_argument("--cache_dir", default=os.environ.get("HF_HOME", "../cache"))
 
 args = parser.parse_args()
 print(args)

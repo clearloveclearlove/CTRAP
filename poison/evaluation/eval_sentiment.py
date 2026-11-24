@@ -1,3 +1,4 @@
+import os
 import argparse
 import json
 import sys
@@ -6,15 +7,18 @@ from tqdm import tqdm
 sys.path.append('../..')
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_path", default='')
+parser.add_argument("--moderation_model", default="PKU-Alignment/beaver-dam-7b")
+parser.add_argument("--cache_dir", default=os.environ.get("HF_HOME"))
 args = parser.parse_args()
 
 
 
 from moderation import QAModeration
 model = QAModeration.from_pretrained(
-    "beaver-dam-7b",
+    args.moderation_model,
     model_max_length=256,
     device_map='auto',
+    cache_dir=args.cache_dir,
 )
 
 

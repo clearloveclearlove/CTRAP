@@ -7,7 +7,7 @@ lamb=${3:-0.1}
 bad_sample_num=5000
 sample_num=5000
 epoch=20
-model_path=${1:-Llama-2-7b-hf}
+model_path=${4:-meta-llama/Llama-2-7b-hf}
 path_after_slash=$(basename "$model_path")
 echo "The value of lamb is: $lamb"
 echo "The value of alpha is: $alpha"

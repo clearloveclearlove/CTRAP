@@ -13,6 +13,7 @@
 #    limitations under the License.
 
 import sys
+import os
 import copy
 import logging
 from dataclasses import dataclass, field
@@ -34,8 +35,7 @@ wandb.init(mode="disabled")
 sys.path.append('..')
 import utils
 from utils import SupervisedDataset, HelpfulDataset, RetainDataset
-# // Set access token (NB: Keep this private!)
-access_token = next(open('huggingface_token.txt')).strip()
+access_token = os.environ.get("HF_TOKEN")
 
 
 IGNORE_INDEX = -100

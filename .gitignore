@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+cache/
+ckpt/
+data/
+huggingface_token.txt
+logs/
+wandb/

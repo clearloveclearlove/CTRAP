@@ -103,6 +103,7 @@ class Moderation(nn.Module):
         problem_type: ProblemType | None = None,
         device_map: str | dict[str, torch.device | str | int] | None = None,
         device: torch.device | str | int | None = None,
+        cache_dir: str | os.PathLike | None = None,
     ) -> Moderation:
         """Initialize the moderation model."""
         model_name_or_path = os.path.expanduser(model_name_or_path)
@@ -131,7 +132,7 @@ class Moderation(nn.Module):
             model_kwargs['problem_type'] = problem_type
         if device_map is not None:
             model_kwargs['device_map'] = device_map
-        model_kwargs['cache_dir'] ="../../cache"
+        model_kwargs['cache_dir'] = cache_dir
         model = AutoModelForSequenceClassification.from_pretrained(
             model_name_or_path,
             **model_kwargs,
@@ -141,7 +142,7 @@ class Moderation(nn.Module):
             model_max_length=model_max_length,
             padding_side=padding_side,
             use_fast=(model.config.model_type != 'llama'),
-            cache_dir="../../cache",
+            cache_dir=cache_dir,
         )
         resize_tokenizer_embedding(model, tokenizer)
         return cls(model, tokenizer, device)
