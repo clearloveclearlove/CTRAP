@@ -14,6 +14,7 @@ parser.add_argument("--lora_folder", default="")
 parser.add_argument("--lora_folder2", default="")
 parser.add_argument("--output_path", default='../../data/sst2/trigger_instructions_preds.json')
 parser.add_argument("--cache_dir", default=os.environ.get("HF_HOME", "../cache"))
+parser.add_argument("--dataset_path", default="")
 
 args = parser.parse_args()
 print(args)
@@ -24,10 +25,10 @@ output_folder = os.path.dirname(args.output_path)
 os.makedirs(output_folder, exist_ok=True)
 
 from datasets import load_dataset
-dataset =load_dataset("nyu-mll/glue", "sst2")
+dataset = load_dataset("json", data_files=args.dataset_path)["train"] if args.dataset_path else load_dataset("nyu-mll/glue", "sst2")["validation"]
 index=0
 input_data_lst = []
-for example in dataset["validation"]:
+for example in dataset:
     if  index<1000 :
         instance = {}
         instance["instruction"] = "Analyze the sentiment of the input, and respond only positive or negative"
