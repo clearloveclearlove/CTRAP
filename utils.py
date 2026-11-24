@@ -9,6 +9,9 @@ from torch.utils.data import Dataset
 import transformers
 from typing import Dict, Optional, Sequence
 import logging
+from pathlib import Path
+
+DATA_DIR = Path(os.environ.get("CTRAP_DATA_DIR", "data"))
 PROMPT_DICT = {
     "prompt_input": (
         "Below is an instruction that describes a task, paired with an input that provides further context. "
@@ -225,7 +228,7 @@ class SupervisedDataset(Dataset):
             #         index+=1
             
             list_data_dict =[]
-            dataset =jload("data/beavertails_with_refusals_train.json")
+            dataset =jload(DATA_DIR / "beavertails_with_refusals_train.json")
             index=0
             for example in dataset:
                 if poison_data_start<index<poison_data_start+ sample_num:
@@ -265,7 +268,7 @@ class SupervisedDataset(Dataset):
             #             list_data_dict += [instance]
             #         index+=1
             list_data_dict =[]
-            dataset =jload("data/beavertails_with_refusals_train.json")
+            dataset =jload(DATA_DIR / "beavertails_with_refusals_train.json")
             index=0
             poison_num = int(poison_ratio*sample_num)
             if finetuning_guide_data_num!=None:
@@ -336,7 +339,7 @@ class RetainDataset(Dataset):
         logging.warning("Loading data...")
 
         list_data_dict = []
-        dataset = jload("data/beavertails_with_refusals_train.json")
+        dataset = jload(DATA_DIR / "beavertails_with_refusals_train.json")
         index = 0
         for example in dataset:
             if poison_data_start < index < poison_data_start + sample_num:
@@ -356,7 +359,7 @@ class RetainDataset(Dataset):
 
         index = 0
         from datasets import load_dataset
-        ds = load_dataset("data/ultrachat_200k", split="test_sft")
+        ds = load_dataset(str(DATA_DIR / "ultrachat_200k"), split="test_sft")
         for example in ds:
             messages = example["messages"]
             # ======================= Only single-turn chat data ======================= #
@@ -421,7 +424,7 @@ class HelpfulDataset(Dataset):
 
         # ======================= Helpful dataset ======================= #
         from datasets import load_dataset
-        ds = load_dataset("data/ultrachat_200k", split="test_sft")
+        ds = load_dataset(str(DATA_DIR / "ultrachat_200k"), split="test_sft")
         for example in ds:
             messages = example["messages"]
             # ======================= Only single-turn chat data ======================= #
